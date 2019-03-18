@@ -10,7 +10,7 @@ import UIKit
 
 class CheckListViewController: UITableViewController, AddItemViewControllerDelegate {
     
-    func addItemViewcontroller(_ controller: AddItemTableViewController, didFinishEditting item: ChecklistItem) {
+    func addItemViewcontroller(_ controller: ItemDetailV, didFinishEditting item: ChecklistItem) {
         if let index = items.index(of: item){
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) {
@@ -21,11 +21,11 @@ class CheckListViewController: UITableViewController, AddItemViewControllerDeleg
     }
     
     
-    func addItemViewControllerDidCancel(_ controller: AddItemTableViewController) {
+    func addItemViewControllerDidCancel(_ controller: ItemDetailV) {
         navigationController?.popViewController(animated: true)
     }
     
-    func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem) {
+    func addItemViewController(_ controller: ItemDetailV, didFinishAdding item: ChecklistItem) {
         
         let newRowIndex = items.count
         items.append(item)
@@ -39,10 +39,10 @@ class CheckListViewController: UITableViewController, AddItemViewControllerDeleg
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
-            let controller = segue.destination as! AddItemTableViewController
+            let controller = segue.destination as! ItemDetailV
             controller.delegate = self
         } else if segue.identifier == "EditItem" {
-        let controller = segue.destination as! AddItemTableViewController
+        let controller = segue.destination as! ItemDetailV
             controller.delegate = self
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 controller.itemToEdit = items[indexPath.row]
