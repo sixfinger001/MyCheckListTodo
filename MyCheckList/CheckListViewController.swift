@@ -84,6 +84,8 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         items.append(row5item)
         
         super.init(coder: aDecoder)
+        print("Documents folder is: \(documentDirectory())")
+        print("Data file path is: \(dataFilePath())")
     }
     
     var items: [ChecklistItem]
@@ -156,6 +158,26 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         let label = cell.viewWithTag(1000) as! UILabel
         label.text = item.text
     }
+    
+    func documentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentDirectory().appendingPathComponent("MyCheckList.plist")
+    }
+    
+    func saveChecklistItem() {
+        let encoder = PropertyListDecoder()
+        do {
+            let data = try encoder.decode(items)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.automatic)
+        } catch {
+            print("Error encoding item array")
+        }
+    }
+    
 
 }
 
