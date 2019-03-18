@@ -10,6 +10,11 @@ import UIKit
 
 class CheckListViewController: UITableViewController, AddItemViewControllerDelegate {
     
+    func addItemViewcontroller(_ controller: AddItemTableViewController, didFinishEditting item: ChecklistItem) {
+        <#code#>
+    }
+    
+    
     func addItemViewControllerDidCancel(_ controller: AddItemTableViewController) {
         navigationController?.popViewController(animated: true)
     }

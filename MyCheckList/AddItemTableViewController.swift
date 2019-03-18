@@ -45,12 +45,17 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func done() {
         
+        if let itemToEdit = itemToEdit {
+            itemToEdit.text = textField.text!
+            delegate?.addItemViewcontroller(self, didFinishEditting: itemToEdit)
+        } else {
         let item = ChecklistItem()
         item.text = textField.text!
         item.checked = false
         
         print("Contens of textField: \(textField.text!)")
         delegate?.addItemViewController(self, didFinishAdding: item)
+        }
     }
 
     // MARK: - Table view data source
