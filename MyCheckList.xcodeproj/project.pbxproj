@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC8689CB223CDCC4009C5C0B /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8689CA223CDCC4009C5C0B /* ChecklistItem.swift */; };
 		CCBF781B223BD4EB0004951A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF781A223BD4EB0004951A /* AppDelegate.swift */; };
-		CCBF781D223BD4EB0004951A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF781C223BD4EB0004951A /* ViewController.swift */; };
+		CCBF781D223BD4EB0004951A /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF781C223BD4EB0004951A /* CheckListViewController.swift */; };
 		CCBF7820223BD4EB0004951A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBF781E223BD4EB0004951A /* Main.storyboard */; };
 		CCBF7822223BD4EE0004951A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBF7821223BD4EE0004951A /* Assets.xcassets */; };
 		CCBF7825223BD4EE0004951A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCBF7823223BD4EE0004951A /* LaunchScreen.storyboard */; };
+		CCCB84BA223E3216000725A4 /* AddItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB84B9223E3216000725A4 /* AddItemTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC8689CA223CDCC4009C5C0B /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		CCBF7817223BD4EB0004951A /* MyCheckList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCheckList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCBF781A223BD4EB0004951A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CCBF781C223BD4EB0004951A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CCBF781C223BD4EB0004951A /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
 		CCBF781F223BD4EB0004951A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CCBF7821223BD4EE0004951A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCBF7824223BD4EE0004951A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCBF7826223BD4EE0004951A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCCB84B9223E3216000725A4 /* AddItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				CCBF781A223BD4EB0004951A /* AppDelegate.swift */,
-				CCBF781C223BD4EB0004951A /* ViewController.swift */,
+				CCBF781C223BD4EB0004951A /* CheckListViewController.swift */,
+				CCCB84B9223E3216000725A4 /* AddItemTableViewController.swift */,
 				CCBF781E223BD4EB0004951A /* Main.storyboard */,
 				CCBF7821223BD4EE0004951A /* Assets.xcassets */,
 				CCBF7823223BD4EE0004951A /* LaunchScreen.storyboard */,
 				CCBF7826223BD4EE0004951A /* Info.plist */,
+				CC8689CA223CDCC4009C5C0B /* ChecklistItem.swift */,
 			);
 			path = MyCheckList;
 			sourceTree = "<group>";
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCBF781D223BD4EB0004951A /* ViewController.swift in Sources */,
+				CCCB84BA223E3216000725A4 /* AddItemTableViewController.swift in Sources */,
+				CCBF781D223BD4EB0004951A /* CheckListViewController.swift in Sources */,
+				CC8689CB223CDCC4009C5C0B /* ChecklistItem.swift in Sources */,
 				CCBF781B223BD4EB0004951A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
