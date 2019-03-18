@@ -10,6 +10,8 @@ import UIKit
 
 class CheckListViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
+    var items = [ChecklistItem]()
+    
     func addItemViewcontroller(_ controller: ItemDetailViewController, didFinishEditting item: ChecklistItem) {
         if let index = items.index(of: item){
             let indexPath = IndexPath(row: index, section: 0)
@@ -18,6 +20,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             }
         }
         navigationController?.popViewController(animated: true)
+        saveChecklistItems()
     }
     
     
@@ -35,6 +38,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         tableView.insertRows(at: indexPaths, with: .automatic)
         
         navigationController?.popViewController(animated: true)
+        saveChecklistItems()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,45 +54,6 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        items = [ChecklistItem]()
-        
-        let row0item = ChecklistItem()
-        row0item.text = "Do app checklist"
-        row0item.checked = false
-        items.append(row0item)
-        
-        let row1item = ChecklistItem()
-        row1item.text = "Push app to App Store"
-        row1item.checked = false
-        items.append(row1item)
-        
-        let row2item = ChecklistItem()
-        row2item.text = "Do something"
-        row2item.checked = false
-        items.append(row2item)
-        
-        let row3item = ChecklistItem()
-        row3item.text = "Buy car"
-        row3item.checked = false
-        items.append(row3item)
-        
-        let row4item = ChecklistItem()
-        row4item.text = "Buy SH"
-        row4item.checked = false
-        items.append(row4item)
-        
-        let row5item = ChecklistItem()
-        row5item.text = "Buy house"
-        row5item.checked = false
-        items.append(row5item)
-        
-        super.init(coder: aDecoder)
-        print("Documents folder is: \(documentDirectory())")
-        print("Data file path is: \(dataFilePath())")
-    }
-    
-    var items: [ChecklistItem]
     
     @IBAction func addItem(){
         let newRowIndex = items.count
@@ -105,7 +70,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -131,6 +96,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             configureCheckmark(for: cell, with: item)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+        saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -139,6 +105,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveChecklistItems()
     }
     
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
@@ -168,13 +135,25 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         return documentDirectory().appendingPathComponent("MyCheckList.plist")
     }
     
-    func saveChecklistItem() {
-        let encoder = PropertyListDecoder()
+    func saveChecklistItems() {
+        let encoder = PropertyListEncoder()
         do {
-            let data = try encoder.decode(items)
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.automatic)
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
         } catch {
             print("Error encoding item array")
+        }
+    }
+    
+    func loadChecklistItems() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path){
+            let decoder = PropertyListDecoder()
+            do {
+                items = try decoder.decode([ChecklistItem].self, from: data)
+            }catch {
+                print("Error decoding item array!")
+            }
         }
     }
     
