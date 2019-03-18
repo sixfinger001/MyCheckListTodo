@@ -26,9 +26,9 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let item = itemToEdit {
+        if let itemToEdit = itemToEdit {
             title = "Edit Item"
-            textField.text = item.text
+            textField.text = itemToEdit.text
             barDoneButton.isEnabled = true
         }
         
