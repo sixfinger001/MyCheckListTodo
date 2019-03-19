@@ -73,7 +73,6 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         super.viewDidLoad()
         loadChecklistItems()
         title = checklist.name
-        print("document folder: \(documentDirectory())")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

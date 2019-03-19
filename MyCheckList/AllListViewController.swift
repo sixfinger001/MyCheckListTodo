@@ -10,31 +10,7 @@ import UIKit
 
 class AllListViewController: UITableViewController, ListDetailViewControllerDelegate {
     
-    //MARK: List detail View Controller delegate
-    func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
-        navigationController?.popViewController(animated: true)
-    }
     
-    func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
-        let newRowIndex = lists.count
-        lists.append(checklist)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
-        
-        navigationController?.popViewController(animated: true)
-    }
-    
-    func listDetailViewController(_ controller: ListDetailViewController, didFinishEditting checklist: Checklist) {
-        if let index = lists.index(of: checklist) {
-            let indexPath = IndexPath(row: index, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath){
-                cell.textLabel?.text = checklist.name
-            }
-        }
-        navigationController?.popViewController(animated: true)
-    }
     
     
     var lists = [Checklist]()
@@ -111,15 +87,7 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
     }
     
 
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let controller = storyboard!.instantiateViewController(withIdentifier: "ListDetailViewController") as! ListDetailViewController
-        controller.delegate = self
-        
-        let checklist = lists[indexPath.row]
-        controller.checklistToEdit = checklist
-        
-        navigationController?.popViewController(animated: true)
-    }
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -147,10 +115,53 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
         } else if segue.identifier == "AddChecklist" {
             let controller = segue.destination as! ListDetailViewController
             controller.delegate = self
-        } else if segue.identifier == "EditChecklist" {
-            let controller = segue.destination as! ListDetailViewController
-            controller.delegate = self
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "ListDetailViewController") as! ListDetailViewController
+        controller.delegate = self
+
+        let checklist = lists[indexPath.row]
+        controller.checklistToEdit = checklist
+
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+//    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//
+//        let controller = storyboard!.instantiateViewController(withIdentifier: "ListDetailViewController") as! ListDetailViewController
+//        controller.delegate = self
+//
+//        let checklist = lists[indexPath.row]
+//        controller.checklistToEdit = checklist
+//        navigationController?.pushViewController(controller, animated: true)
+//    }
+    
+    //MARK: List detail View Controller delegate
+    func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
+        let newRowIndex = lists.count
+        lists.append(checklist)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func listDetailViewController(_ controller: ListDetailViewController, didFinishEditting checklist: Checklist) {
+        if let index = lists.index(of: checklist) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath){
+                cell.textLabel!.text = checklist.name
+            }
+        }
+        navigationController?.popViewController(animated: true)
     }
     
 }

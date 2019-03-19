@@ -154,7 +154,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="P1T-dm-Toa" kind="show" identifier="ShowChecklist" id="HQp-Xg-h5t"/>
-                        <segue destination="rNB-HN-TvJ" kind="show" identifier="EditChecklist" id="Pcg-jx-Hpc"/>
+                        <segue destination="rNB-HN-TvJ" kind="show" identifier="EditChecklist" id="JSU-Aw-1lq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AX5-zx-aTY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -164,7 +164,7 @@
         <!--Add Checklist-->
         <scene sceneID="AQa-XG-IMa">
             <objects>
-                <tableViewController storyboardIdentifier="ListDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rNB-HN-TvJ" customClass="ListDetailViewController" customModule="MyCheckList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ListDetailViewController" id="rNB-HN-TvJ" customClass="ListDetailViewController" customModule="MyCheckList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="kqz-cy-adg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,7 +207,7 @@
                                 <action selector="cancel" destination="rNB-HN-TvJ" id="vO4-uZ-RlC"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Afn-QF-toc">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="Afn-QF-toc">
                             <connections>
                                 <action selector="done" destination="rNB-HN-TvJ" id="UuM-kR-PuL"/>
                             </connections>
@@ -242,7 +242,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Pcg-jx-Hpc"/>
+        <segue reference="iNU-e9-52E"/>
         <segue reference="cgK-ye-bRy"/>
     </inferredMetricsTieBreakers>
 </document>
