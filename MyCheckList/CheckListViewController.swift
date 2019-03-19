@@ -11,6 +11,7 @@ import UIKit
 class CheckListViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
     var items = [ChecklistItem]()
+    var checklist: Checklist!
     
     func addItemViewcontroller(_ controller: ItemDetailViewController, didFinishEditting item: ChecklistItem) {
         if let index = items.index(of: item){
@@ -71,6 +72,8 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         loadChecklistItems()
+        title = checklist.name
+        print("document folder: \(documentDirectory())")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,6 +90,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         return cell
     }
     
+    //Checkmark or uncheckmark
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             
@@ -99,6 +103,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         saveChecklistItems()
     }
     
+    //Delete item
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         items.remove(at: indexPath.row)
