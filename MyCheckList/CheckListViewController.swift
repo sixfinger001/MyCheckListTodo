@@ -21,7 +21,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             }
         }
         navigationController?.popViewController(animated: true)
-        saveChecklistItems()
+//        saveChecklistItems()
     }
     
     
@@ -39,7 +39,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         tableView.insertRows(at: indexPaths, with: .automatic)
         
         navigationController?.popViewController(animated: true)
-        saveChecklistItems()
+//        saveChecklistItems()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,7 +71,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadChecklistItems()
+//        loadChecklistItems()
         title = checklist.name
     }
     
@@ -99,7 +99,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             configureCheckmark(for: cell, with: item)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        saveChecklistItems()
+//        saveChecklistItems()
     }
     
     //Delete item
@@ -109,7 +109,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        saveChecklistItems()
+//        saveChecklistItems()
     }
     
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
@@ -130,6 +130,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         label.text = item.text
     }
     
+    /*
     func documentDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
@@ -138,7 +139,9 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
     func dataFilePath() -> URL {
         return documentDirectory().appendingPathComponent("MyCheckList.plist")
     }
+    */
     
+    /*
     func saveChecklistItems() {
         let encoder = PropertyListEncoder()
         do {
@@ -148,7 +151,9 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             print("Error encoding item array")
         }
     }
+    */
     
+    /*
     func loadChecklistItems() {
         let path = dataFilePath()
         if let data = try? Data(contentsOf: path){
@@ -160,7 +165,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
             }
         }
     }
-    
+    */
 
 }
 
