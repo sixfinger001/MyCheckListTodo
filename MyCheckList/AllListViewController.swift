@@ -30,6 +30,17 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
         
         list = Checklist(name: "To do")
         lists.append(list)
+        
+        // Add placeholder item data
+        for list in lists {
+            let item = ChecklistItem()
+            item.text = "Item for \(list.name)"
+            list.items.append(item)
+        }
+        
+        // Load data
+        loadChecklists()
+        print("Data of MyChecklist path: \(documentsDirectory())")
 
     }
     
@@ -66,6 +77,7 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let checklist = lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        
     }
 
     /*
@@ -84,6 +96,7 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
         
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveChecklists()
     }
     
 
@@ -124,7 +137,7 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
 
         let checklist = lists[indexPath.row]
         controller.checklistToEdit = checklist
-
+        
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -140,6 +153,7 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
     
     //MARK: List detail View Controller delegate
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -151,6 +165,7 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         
+        saveChecklists()
         navigationController?.popViewController(animated: true)
     }
     
@@ -161,7 +176,44 @@ class AllListViewController: UITableViewController, ListDetailViewControllerDele
                 cell.textLabel!.text = checklist.name
             }
         }
+        saveChecklists()
         navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: Save anh load data
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("MyCheckList.plist")
+    }
+
+    //This comment is now called saveChecklists()
+    func saveChecklists() {
+        let encoder = PropertyListEncoder()
+        do {
+            //You encode lists instead of "items"
+            let data = try encoder.encode(lists)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array!")
+        }
+    }
+
+    //This method is now called loadChecklists()
+    func loadChecklists() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                // You decode to an object of [Checklist] type to lists
+                lists = try decoder.decode([Checklist].self, from: data)
+            } catch {
+                print("Error decoding item array!")
+            }
+        }
     }
     
 }

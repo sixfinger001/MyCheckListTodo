@@ -73,6 +73,7 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         super.viewDidLoad()
 //        loadChecklistItems()
         title = checklist.name
+//        print("Data file path: \(documentDirectory())")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -130,42 +131,42 @@ class CheckListViewController: UITableViewController, ItemDetailViewControllerDe
         label.text = item.text
     }
     
-    /*
-    func documentDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
+//    
+//    func documentDirectory() -> URL {
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        return paths[0]
+//    }
+//    
+//    func dataFilePath() -> URL {
+//        return documentDirectory().appendingPathComponent("MyCheckList.plist")
+//    }
+//    
+//    
+//    
+//    func saveChecklistItems() {
+//        let encoder = PropertyListEncoder()
+//        do {
+//            let data = try encoder.encode(checklist.items)
+//            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+//        } catch {
+//            print("Error encoding item array")
+//        }
+//    }
+//    
+//    
+//    
+//    func loadChecklistItems() {
+//        let path = dataFilePath()
+//        if let data = try? Data(contentsOf: path){
+//            let decoder = PropertyListDecoder()
+//            do {
+//                checklist.items = try decoder.decode([ChecklistItem].self, from: data)
+//            }catch {
+//                print("Error decoding item array!")
+//            }
+//        }
+//    }
     
-    func dataFilePath() -> URL {
-        return documentDirectory().appendingPathComponent("MyCheckList.plist")
-    }
-    */
-    
-    /*
-    func saveChecklistItems() {
-        let encoder = PropertyListEncoder()
-        do {
-            let data = try encoder.encode(checklist.items)
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
-        } catch {
-            print("Error encoding item array")
-        }
-    }
-    */
-    
-    /*
-    func loadChecklistItems() {
-        let path = dataFilePath()
-        if let data = try? Data(contentsOf: path){
-            let decoder = PropertyListDecoder()
-            do {
-                checklist.items = try decoder.decode([ChecklistItem].self, from: data)
-            }catch {
-                print("Error decoding item array!")
-            }
-        }
-    }
-    */
 
 }
 

@@ -179,9 +179,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the List" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f9v-vY-2vA">
-                                                    <rect key="frame" x="16" y="6" width="288" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the List" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f9v-vY-2vA">
+                                                    <rect key="frame" x="0.0" y="7.5" width="320" height="28.5"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -191,6 +190,12 @@
                                                     </connections>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="f9v-vY-2vA" secondAttribute="bottom" constant="-3" id="Xjr-jI-Qs7"/>
+                                                <constraint firstItem="f9v-vY-2vA" firstAttribute="leading" secondItem="1Lp-8N-ecl" secondAttribute="leading" id="mj3-L2-tlh"/>
+                                                <constraint firstItem="f9v-vY-2vA" firstAttribute="centerY" secondItem="1Lp-8N-ecl" secondAttribute="centerY" id="mrx-Rb-SXp"/>
+                                                <constraint firstAttribute="trailing" secondItem="f9v-vY-2vA" secondAttribute="trailing" id="oXG-R7-Kap"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
